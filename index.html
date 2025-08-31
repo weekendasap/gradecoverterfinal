@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>내신 성적 비교.분석</title>
+
+  <!-- Rounded/Plump Korean fonts -->
+  <link href="https://cdn.jsdelivr.net/gh/webfontworld/gmarket/GmarketSans.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquareRound/nanumsquareround.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="app">
+    <header class="page-header">
+      <h1 class="is-bold">내신 성적 비교.분석</h1>
+      <p class="description">1학년 1·2학기 성적을 입력하여 전교등수와 9등급제의 자신의 위치를 확인하세요.</p>
+    </header>
+
+    <div id="validationSummary" class="validation-summary" aria-live="polite"></div>
+
+    <main class="layout">
+      <!-- 좌측: 입력 패널 -->
+      <section class="panel left-pane" aria-label="입력 영역">
+        <!-- 인원 정보 -->
+        <div class="card input-section">
+          <h2 class="bubble-title is-bold">인원 정보</h2>
+          <div class="input-group">
+            <label for="g1_total_students">1학년 전체 학생 수</label>
+            <input type="number" id="g1_total_students" min="1" inputmode="numeric" placeholder="예: 200"/>
+            <small class="input-hint">1 이상의 숫자를 입력하세요.</small>
+            <div class="error-message" id="g1_total_studentsError"></div>
+          </div>
+        </div>
+
+        <!-- 1학년 1학기 -->
+        <div class="card input-section">
+          <h2 class="bubble-title">1학년 1학기</h2>
+          <p class="note">주요 5개 과목의 점수와 전교 등수를 입력하세요.</p>
+          <div class="subject-grid">
+            <!-- 국어 -->
+            <div class="input-group subject">
+              <div class="subject-title">국어</div>
+              <label for="s1_korean_score">점수(0~100)</label>
+              <input type="number" id="s1_korean_score" min="0" max="100" inputmode="numeric" placeholder="예: 92"/>
+              <div class="error-message" id="s1_korean_scoreError"></div>
+
+              <label for="s1_korean_rank">전교 등수</label>
+              <input type="number" id="s1_korean_rank" min="1" inputmode="numeric" placeholder="예: 15"/>
+              <div class="error-message" id="s1_korean_rankError"></div>
+            </div>
+            <!-- 영어 -->
+            <div class="input-group subject">
+              <div class="subject-title">영어</div>
+              <label for="s1_english_score">점수(0~100)</label>
+              <input type="number" id="s1_english_score" min="0" max="100" inputmode="numeric" placeholder="예: 88"/>
+              <div class="error-message" id="s1_english_scoreError"></div>
+
+              <label for="s1_english_rank">전교 등수</label>
+              <input type="number" id="s1_english_rank" min="1" inputmode="numeric" placeholder="예: 20"/>
+              <div class="error-message" id="s1_english_rankError"></div>
+            </div>
+            <!-- 수학 -->
+            <div class="input-group subject">
+              <div class="subject-title">수학</div>
+              <label for="s1_math_score">점수(0~100)</label>
+              <input type="number" id="s1_math_score" min="0" max="100" inputmode="numeric" placeholder="예: 95"/>
+              <div class="error-message" id="s1_math_scoreError"></div>
+
+              <label for="s1_math_rank">전교 등수</label>
+              <input type="number" id="s1_math_rank" min="1" inputmode="numeric" placeholder="예: 10"/>
+              <div class="error-message" id="s1_math_rankError"></div>
+            </div>
+            <!-- 사회 -->
+            <div class="input-group subject">
+              <div class="subject-title">사회</div>
+              <label for="s1_social_score">점수(0~100)</label>
+              <input type="number" id="s1_social_score" min="0" max="100" inputmode="numeric" placeholder="예: 85"/>
+              <div class="error-message" id="s1_social_scoreError"></div>
+
+              <label for="s1_social_rank">전교 등수</label>
+              <input type="number" id="s1_social_rank" min="1" inputmode="numeric" placeholder="예: 30"/>
+              <div class="error-message" id="s1_social_rankError"></div>
+            </div>
+            <!-- 과학 -->
+            <div class="input-group subject">
+              <div class="subject-title">과학</div>
+              <label for="s1_science_score">점수(0~100)</label>
+              <input type="number" id="s1_science_score" min="0" max="100" inputmode="numeric" placeholder="예: 90"/>
+              <div class="error-message" id="s1_science_scoreError"></div>
+
+              <label for="s1_science_rank">전교 등수</label>
+              <input type="number" id="s1_science_rank" min="1" inputmode="numeric" placeholder="예: 18"/>
+              <div class="error-message" id="s1_science_rankError"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1학년 2학기 -->
+        <div class="card input-section">
+          <h2 class="bubble-title">1학년 2학기</h2>
+          <p class="note">주요 5개 과목의 점수와 전교 등수를 입력하세요.</p>
+          <div class="subject-grid">
+            <!-- 국어 -->
+            <div class="input-group subject">
+              <div class="subject-title">국어</div>
+              <label for="s2_korean_score">점수(0~100)</label>
+              <input type="number" id="s2_korean_score" min="0" max="100" inputmode="numeric" placeholder="예: 91"/>
+              <div class="error-message" id="s2_korean_scoreError"></div>
+
+              <label for="s2_korean_rank">전교 등수</label>
+              <input type="number" id="s2_korean_rank" min="1" inputmode="numeric" placeholder="예: 13"/>
+              <div class="error-message" id="s2_korean_rankError"></div>
+            </div>
+            <!-- 영어 -->
+            <div class="input-group subject">
+              <div class="subject-title">영어</div>
+              <label for="s2_english_score">점수(0~100)</label>
+              <input type="number" id="s2_english_score" min="0" max="100" inputmode="numeric" placeholder="예: 86"/>
+              <div class="error-message" id="s2_english_scoreError"></div>
+
+              <label for="s2_english_rank">전교 등수</label>
+              <input type="number" id="s2_english_rank" min="1" inputmode="numeric" placeholder="예: 22"/>
+              <div class="error-message" id="s2_english_rankError"></div>
+            </div>
+            <!-- 수학 -->
+            <div class="input-group subject">
+              <div class="subject-title">수학</div>
+              <label for="s2_math_score">점수(0~100)</label>
+              <input type="number" id="s2_math_score" min="0" max="100" inputmode="numeric" placeholder="예: 93"/>
+              <div class="error-message" id="s2_math_scoreError"></div>
+
+              <label for="s2_math_rank">전교 등수</label>
+              <input type="number" id="s2_math_rank" min="1" inputmode="numeric" placeholder="예: 12"/>
+              <div class="error-message" id="s2_math_rankError"></div>
+            </div>
+            <!-- 사회 -->
+            <div class="input-group subject">
+              <div class="subject-title">사회</div>
+              <label for="s2_social_score">점수(0~100)</label>
+              <input type="number" id="s2_social_score" min="0" max="100" inputmode="numeric" placeholder="예: 87"/>
+              <div class="error-message" id="s2_social_scoreError"></div>
+
+              <label for="s2_social_rank">전교 등수</label>
+              <input type="number" id="s2_social_rank" min="1" inputmode="numeric" placeholder="예: 28"/>
+              <div class="error-message" id="s2_social_rankError"></div>
+            </div>
+            <!-- 과학 -->
+            <div class="input-group subject">
+              <div class="subject-title">과학</div>
+              <label for="s2_science_score">점수(0~100)</label>
+              <input type="number" id="s2_science_score" min="0" max="100" inputmode="numeric" placeholder="예: 89"/>
+              <div class="error-message" id="s2_science_scoreError"></div>
+
+              <label for="s2_science_rank">전교 등수</label>
+              <input type="number" id="s2_science_rank" min="1" inputmode="numeric" placeholder="예: 16"/>
+              <div class="error-message" id="s2_science_rankError"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2·3학년 준비중 -->
+        <div class="card input-section muted-card">
+          <h2 class="bubble-title">2학년</h2>
+          <p>준비중</p>
+        </div>
+        <div class="card input-section muted-card">
+          <h2 class="bubble-title">3학년</h2>
+          <p>준비중</p>
+        </div>
+
+        <!-- 좌측 하단 버튼 -->
+        <div class="actions">
+          <button id="calculateBtn" class="primary">결과 확인</button>
+          <button id="resetBtn" class="secondary">초기화</button>
+        </div>
+      </section>
+
+      <!-- 우측: 결과 패널 -->
+      <section class="panel right-pane" aria-label="결과 영역">
+        <div class="card result-section">
+          <h2 class="bubble-title is-bold">계산 결과</h2>
+
+          <div class="term-result">
+            <h3 class="bubble-title">1학년 1학기 결과</h3>
+            <div id="s1_results" class="result-grid"></div>
+          </div>
+
+          <div class="term-result">
+            <h3 class="bubble-title">1학년 2학기 결과</h3>
+            <div id="s2_results" class="result-grid"></div>
+          </div>
+
+          <div class="overall-result">
+            <h3 class="bubble-title">종합 결과</h3>
+            <div id="overall_results" class="overall-grid"></div>
+          </div>
+
+          <div class="pyramid-block">
+            <h3 class="bubble-title">전교 상위 퍼센트</h3>
+            <p id="percentile_text" class="percentile-text"></p>
+            <div id="pyramid_container" class="pyramid-container" aria-label="상위 퍼센트 피라미드 그래프"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
